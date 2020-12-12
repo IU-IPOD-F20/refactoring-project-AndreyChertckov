@@ -1,0 +1,99 @@
+// ------------------------------------------
+//  Created by Jean-Michel Bruel on 2019-12.
+//  Copyright (c) 2019 IRIT/U. Toulouse. All rights reserved.
+// Thanks to Louis Chanoua for code & idea
+// ------------------------------------------
+= DUT-Info/S3/M3105 (CPOA) : Projet refactoring
+Jean-Michel Bruel
+v20.1, {localdate}
+:mailto: jbruel@gmail.com
+:status: bottom
+:inclusion:
+:experimental:
+:uk:
+:toc: toc2
+:asciidoctorlink: link:http://asciidoctor.org/[Asciidoctor]indexterm:[Asciidoctor]
+
+// ------------------------------------------
+
+== Refactoring of an existing code
+
+You are asked to refactor the application you will find on this repo:
+
+https://github.com/codurance/task-list 
+
+TIP: This one you can do in `python` or some other language than Java!
+
+Here are your initial tasks for this project:
+
+[%interactive]
+* [ ] Replace this README.adoc so that it contains your report on what you've done to refactor.
+* [ ] Explain how to deploy your app (e.g., `mvn install` or `gradle install`)
+
+
+ifdef::uk[]
+== Expected activity
+
+You have up to December 17th, 2020 to improve as much as possible the code of your choosen application :
+
+- New design patterns
+- Good practices (e.g., SOLID)
+
+TIP: Start simple, and remember to document in your README.
+
+TIP: To guide you, try to anticipate code evolution.
+endif::[]
+
+
+ifdef::uk[]
+== Expected Results
+
+=== GitHub repo
+
+Use this repo to host your code.
+You can use branches if you think it is pertinent.
+
+=== UML Models
+
+No models is required nor expected, but if you need some to explain a refactoring, feel free to use them.
+They will be appreciated.
+
+=== Expected Delivrables
+
+The entry point of your report is the `README` of the `master` branch.
+
+Mandatory elements:
+
+[%interactive]
+* [ ] your name
+* [ ] a table of content
+une courte explication par chaque fonctionnalité nouvelle ou refactoring précis
+avec des extraits de code illustratifs et une justification.
+endif::[]
+
+
+ifdef::uk[]
+== Evaluation criteria
+
+You can work in teams of 2 max (but then double work will be expected).
+
+The main criteria for grading will be the following:
+
+- pertinence of the choices
+- pertinence of the tests
+- overall code quality
+- documentation quality (illustration, explainations)
+- number and difficulty of the refactoring elements
+
+endif::[]
+
+ifndef::backend-pdf[]
+****************************************************************
+Baked with {asciidoctorlink} (version `{asciidoctor-version}`) from 'Dan Allen', based on {asciidoc}.
+'Licence Creative Commons'.
+image:88x31.png["Licence Creative
+Commons",style="border-width:0",link="http://creativecommons.org/licenses/by-sa/3.0/"]
+http://creativecommons.org/licenses/by-sa/3.0/[licence Creative Commons Paternité - Partage à l&#39;Identique 3.0 non transposé].
+****************************************************************
+endif::[]
+
