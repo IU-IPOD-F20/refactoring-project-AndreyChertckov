@@ -27,3 +27,9 @@ target
 .factorypath
 .project
 .settings
+
+# Virtualenv
+venv
+
+# System files
+.DS_Store
