@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "fix0",
+      "setup": "",
+      "run": "maven install",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+    }
+  ]
+}
