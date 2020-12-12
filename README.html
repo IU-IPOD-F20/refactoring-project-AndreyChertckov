@@ -451,6 +451,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_how_to_deploy_project">How to deploy project</a></li>
+<li><a href="#_notes_on_testing">Notes on testing</a></li>
 <li><a href="#_change_log">Change log</a></li>
 </ul>
 </div>
@@ -460,7 +461,72 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_how_to_deploy_project">How to deploy project</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="python/README.md" class="bare">python/README.md</a></p>
+<p>The application requires Python 3.5 or above</p>
+</div>
+<div class="paragraph">
+<p>First, create a virtual environment</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>pip install virtualenv
+virtualenv venv</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To activate venv on Windows</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>venv\Scripts\activate</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To activate venv on Linux</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>source venv/bin/activate</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run tests:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>python -m unittest -v</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run the application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>python -m task_list</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_notes_on_testing">Notes on testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For end-to-end testing, a subprocess was used instead of threading. The subprocess module allows
+you to create a new process and connect to their input and output pipes.</p>
+</div>
+<div class="paragraph">
+<p>The application test runs main from task_list module and then injects the inputs into stdin.
+The IO Pipe is blocking which more closely emulates the real behavior of stdin when calling readline.
+The call will block until data is written to stdin.
+Likewise stdout.read will block until there is data to be read.</p>
+</div>
+<div class="paragraph">
+<p>Because of the potential for blocking, a threaded timer was introduced
+to kill the subprocess on deadlock. The timeout is currently set to 2 seconds
+but if additional tests run longer than that the timeout should be increased.</p>
+</div>
+<div class="paragraph">
+<p>As the subprocess captures all input and output, using print statements for debugging during tests
+will not work as expected.</p>
 </div>
 </div>
 </div>
@@ -474,7 +540,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="footer">
 <div id="footer-text">
 Version 20.1<br>
-Last updated 2020-12-12 16:53:05 +0300
+Last updated 2020-12-12 17:01:23 +0300
 </div>
 </div>
 </body>
