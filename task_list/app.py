@@ -15,7 +15,21 @@ class TaskList:
         self.console = console
         self.last_id: int = 0
         self.projects: ProjectSet = ProjectSet()
-        self.routes = { "add": {"project": AddProjectCommand, "task": AddTaskCommand}, "show": ShowCommand, "check": CheckCommand, "uncheck": UnCheckCommand , "help": HelpCommand, "deadline": DeadlineCommand, "today": TodayCommand, "delete": DeleteCommand}
+        self.routes = {
+                "add": {
+                    "project": AddProjectCommand,
+                    "task": AddTaskCommand},
+                "view": {
+                    "by": {
+                        "project": ShowCommand
+                        }
+                    },
+                "check": CheckCommand,
+                "uncheck": UnCheckCommand,
+                "help": HelpCommand,
+                "deadline": DeadlineCommand,
+                "today": TodayCommand,
+                "delete": DeleteCommand}
 
     def run(self) -> None:
         while True:
