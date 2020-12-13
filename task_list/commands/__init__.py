@@ -8,3 +8,4 @@ from .show import ShowCommand, TodayCommand
 from .change_task_status import CheckCommand, UnCheckCommand
 from .help import HelpCommand
 from .deadline import DeadlineCommand
+from .delete import DeleteCommand

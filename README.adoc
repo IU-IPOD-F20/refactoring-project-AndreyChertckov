@@ -73,3 +73,6 @@ will not work as expected.
   * Features:
     . Add `deadline <ID> <date in '%d/%m/%Y %H:%M:%S'>` command
     . Add `today` command
+2. Add deletion, feature #4
+  * Features:
+    . Add `delete <ID>` command

@@ -2,7 +2,7 @@ import unittest
 from datetime import datetime
 
 from task_list.data_modules import ProjectSet, Project, Task, TaskUid
-from task_list.commands import AddProjectCommand, AddTaskCommand, CheckCommand, UnCheckCommand, ShowCommand, DeadlineCommand, TodayCommand
+from task_list.commands import AddProjectCommand, AddTaskCommand, CheckCommand, UnCheckCommand, ShowCommand, DeadlineCommand, TodayCommand, DeleteCommand
 
 
 class TestCommands(unittest.TestCase):
@@ -71,3 +71,11 @@ class TestCommands(unittest.TestCase):
         expected_message = """test\n  [x] 1: task\n"""
         self.assertEqual(expected_message, message)
 
+    def test_delete_task(self):
+        projects = ProjectSet({"test": Project("test", {TaskUid(1): Task(TaskUid(1), "task", False)})})
+        parameters_class = DeleteCommand.get_parameters_class()
+        parameters = parameters_class.parse_input_to_parameters(["1"])
+        command = DeleteCommand(parameters)
+        result_projects = command.execute(projects).new_state
+        expected_projects = ProjectSet({"test": Project("test", {})})
+        self.assertEqual(expected_projects,result_projects)
