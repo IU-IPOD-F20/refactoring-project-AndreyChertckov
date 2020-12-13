@@ -1,8 +1,6 @@
-
+from datetime import datetime
 from dataclasses import dataclass, field
 from typing import Dict, Set, Optional, Iterator
-
-from task_list.task import Task
 
 @dataclass
 class TaskUid:
@@ -25,6 +23,21 @@ class TaskUid:
     def from_string(cls, string: str) -> 'TaskUid':
         return cls(uid=int(string))
 
+@dataclass
+class Task:
+    id: TaskUid
+    description: str
+    done: bool
+    deadline: Optional[datetime] = None
+
+    def set_done(self, done: bool):
+        self.done = done
+
+    def is_done(self) -> bool:
+        return self.done
+
+    def set_deadline(self, deadline):
+        self.deadline = deadline
 
 @dataclass
 class Project:
@@ -56,3 +69,4 @@ class ProjectSet:
     
     def __iter__(self):
         return iter(self.projects.items())
+

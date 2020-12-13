@@ -1,9 +1,8 @@
 from typing import Dict, List, Union
 
 from task_list.console import Console
-from task_list.task import Task
 from task_list.data_modules import ProjectSet
-from task_list.commands import Command, CommandResponse, ParseError, AddProjectCommand, AddTaskCommand, ShowCommand, CheckCommand, UnCheckCommand, HelpCommand
+from task_list.commands import Command, CommandResponse, ParseError, AddProjectCommand, AddTaskCommand, ShowCommand, CheckCommand, UnCheckCommand, HelpCommand, DeadlineCommand, TodayCommand
 
 
 class RouteNotFound(Exception):
@@ -16,7 +15,7 @@ class TaskList:
         self.console = console
         self.last_id: int = 0
         self.projects: ProjectSet = ProjectSet()
-        self.routes = { "add": {"project": AddProjectCommand, "task": AddTaskCommand}, "show": ShowCommand, "check": CheckCommand, "uncheck": UnCheckCommand , "help": HelpCommand}
+        self.routes = { "add": {"project": AddProjectCommand, "task": AddTaskCommand}, "show": ShowCommand, "check": CheckCommand, "uncheck": UnCheckCommand , "help": HelpCommand, "deadline": DeadlineCommand, "today": TodayCommand}
 
     def run(self) -> None:
         while True:

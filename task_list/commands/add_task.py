@@ -1,7 +1,6 @@
 from typing import List
 
-from task_list.data_modules import ProjectSet, Project, TaskUid
-from task_list.task import Task
+from task_list.data_modules import ProjectSet, Project, TaskUid, Task
 
 from . import Command, CommandResponse, Parameters, ParseError
 
