@@ -18,7 +18,7 @@ v20.1, {localdate}
 
 == How to deploy project
 
-The application requires Python 3.5 or above
+The application requires Python 3.8 or above
 
 First, create a virtual environment
 ```
@@ -65,3 +65,11 @@ will not work as expected.
 
 == Change log
 
+1. Add deadline, feature #2
+  * Refactoring:
+    . Rewrite using link:https://refactoring.guru/design-patterns/command:[Command Pattern]. Before, commands sends as a string, that is link:https://refactoring.guru/smells/primitive-obsession:[Primitive Obsession]
+    . Add unit tests for each command
+    . Rewrite routing using mapping and recursive search for subcommands
+  * Features:
+    . Add `deadline <ID> <date in '%d/%m/%Y %H:%M:%S'>` command
+    . Add `today` command
