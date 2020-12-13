@@ -31,6 +31,7 @@ target
 # Virtualenv
 venv
 __pycache__
+*.pyc
 
 # System files
 .DS_Store

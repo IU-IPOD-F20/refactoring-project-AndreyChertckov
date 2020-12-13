@@ -56,6 +56,9 @@ class Project:
     def get_task_by_id(self, uid: TaskUid) -> Optional[Task]:
         return self.tasks.get(uid, None)
 
+    def delete_task_by_id(self, uid: TaskUid):
+        del self.tasks[uid]
+
 
 @dataclass
 class ProjectSet:
