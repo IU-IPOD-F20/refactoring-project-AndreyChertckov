@@ -20,6 +20,8 @@ class DeadlineParameters(Parameters):
             task_id = TaskUid.from_string(task_id_str)
             deadline = datetime.strptime(datetime_str, '%d/%m/%Y %H:%M:%S')
             return cls(task_id, deadline)
+        except ValueError as e:
+            raise ParseError(str(e))
         except IndexError:
             raise ParseError("Missing Arguments")
 
