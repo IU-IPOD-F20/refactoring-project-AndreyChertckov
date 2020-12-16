@@ -26,10 +26,10 @@ class HelpCommand(Command):
         response += "  view by project\n"
         response += "  view by deadline\n"
         response += "  add project <project name>\n"
-        response += "  add task <project name> <task description>\n"
+        response += "  add task <project name> <ID> <task description>\n"
         response += "  check <task ID>\n"
         response += "  uncheck <task ID>\n"
-        response += "  deadline <ID> <date in %d/%m/%Y>"
+        response += "  deadline <task ID> <date in %d/%m/%Y>"
         return CommandResponse(message=response, new_state=projects)
 
     @classmethod

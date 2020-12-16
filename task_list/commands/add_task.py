@@ -7,21 +7,20 @@ from . import Command, CommandResponse, Parameters, ParseError
 
 class AddTaskParameters(Parameters):
 
-    def __init__(self, project_name: str, description: str):
+    def __init__(self, project_name: str, task_uid: TaskUid, description: str):
         self.project_name = project_name
         self.description = description
+        self.task_uid = task_uid
 
     @classmethod
     def parse_input_to_parameters(cls, inp: List[str]) -> 'AddProjectParameters':
         try:
-            return cls(inp[0], ' '.join(inp[1:]))
+            return cls(inp[0], TaskUid.from_string(inp[1]), ' '.join(inp[2:]))
         except IndexError:
             raise ParseError("Missing Arguments")
 
 
 class AddTaskCommand(Command):
-
-    task_uid_generator = TaskUid.uid_generator()
 
     def __init__(self, parameters: AddTaskParameters):
         self.parameters = parameters
@@ -31,8 +30,7 @@ class AddTaskCommand(Command):
         if project is None:
             return CommandResponse(message=f"Project with name {self.parameters.project_name} does not exists.", new_state=projects)
 
-        uid = next(self.task_uid_generator)
-        project.add_task(uid, Task(uid, self.parameters.description, done=False))
+        project.add_task(self.parameters.task_uid, Task(self.parameters.task_uid, self.parameters.description, done=False))
         return CommandResponse(message="", new_state=projects)
 
     @classmethod

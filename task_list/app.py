@@ -3,7 +3,7 @@ from typing import Dict, List, Union
 from task_list.console import Console
 from task_list.data_modules import ProjectSet
 from task_list.router import Router, RouteNotFound
-from task_list.commands import Command
+from task_list.commands import Command, ParseError
 
 
 class TaskList:

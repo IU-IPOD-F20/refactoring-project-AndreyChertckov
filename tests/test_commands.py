@@ -28,7 +28,7 @@ class TestCommands(unittest.TestCase):
     def test_add_task(self):
         projects = ProjectSet({"test": Project("test", {})})
         parameters_class = AddTaskCommand.get_parameters_class()
-        parameters = parameters_class.parse_input_to_parameters(["test", "task"])
+        parameters = parameters_class.parse_input_to_parameters(["test", "1", "task"])
         command = AddTaskCommand(parameters)
         result_projects = command.execute(projects).new_state
         expected_projects = ProjectSet(
