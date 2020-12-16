@@ -3,7 +3,7 @@ from typing import Dict, List, Union
 from task_list.console import Console
 from task_list.data_modules import ProjectSet
 from task_list.router import Router, RouteNotFound
-from task_list.commands import Command
+from task_list.commands import Command, ParseError
 
 
 class TaskList:
@@ -23,10 +23,11 @@ class TaskList:
             try:
                 command = self.router(inp)
                 self.execute(command)
+
             except RouteNotFound:
-                self.error(inp)
+                self.error(f"Command {inp} not found")
             except ParseError as exc:
-                self.console.print(f"Parsing command return: {exc}")
+                self.error(f"Parsing command return: {exc}")
 
 
     def execute(self, command: Command) -> None:
@@ -34,3 +35,6 @@ class TaskList:
         self.projects = command_response.new_state
         if command_response.message:
             self.console.print(command_response.message)
+    
+    def error(self, error: str):
+        self.console.print(error)

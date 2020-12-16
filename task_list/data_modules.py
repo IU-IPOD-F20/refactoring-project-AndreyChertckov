@@ -1,17 +1,10 @@
 from datetime import datetime
 from dataclasses import dataclass, field
-from typing import Dict, Set, Optional, Iterator, List
+from typing import Dict, Set, Optional, Iterator, List, Union
 
 @dataclass
 class TaskUid:
-    uid: int
-
-    @classmethod
-    def uid_generator(cls) -> Iterator:
-        i = 1
-        while True:
-            yield cls(uid=i)
-            i += 1
+    uid: Union[int, str]
 
     def __hash__(self):
         return hash(self.uid)
@@ -21,7 +14,10 @@ class TaskUid:
 
     @classmethod
     def from_string(cls, string: str) -> 'TaskUid':
-        return cls(uid=int(string))
+        try:
+            return cls(uid=int(string))
+        except ValueError:
+            return cls(string)
 
 @dataclass
 class Task:

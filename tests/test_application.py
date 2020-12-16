@@ -27,8 +27,8 @@ class ApplicationTest(unittest.TestCase):
     def test_it_works(self):
         self.execute("view by project")
         self.execute("add project secrets")
-        self.execute("add task secrets Eat more donuts.")
-        self.execute("add task secrets Destroy all humans.")
+        self.execute("add task secrets 1 Eat more donuts.")
+        self.execute("add task secrets 2 Destroy all humans.")
         self.execute("view by project")
 
         self.read_lines(
@@ -36,12 +36,12 @@ class ApplicationTest(unittest.TestCase):
         )
 
         self.execute("add project training")
-        self.execute("add task training Four Elements of Simple Design")
-        self.execute("add task training SOLID")
-        self.execute("add task training Coupling and Cohesion")
-        self.execute("add task training Primitive Obsession")
-        self.execute("add task training Outside-In TDD")
-        self.execute("add task training Interaction-Driven Design")
+        self.execute("add task training 3 Four Elements of Simple Design")
+        self.execute("add task training 4 SOLID")
+        self.execute("add task training 5 Coupling and Cohesion")
+        self.execute("add task training 6 Primitive Obsession")
+        self.execute("add task training 7 Outside-In TDD")
+        self.execute("add task training 8 Interaction-Driven Design")
 
         self.execute("check 1")
         self.execute("check 3")
