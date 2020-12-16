@@ -76,3 +76,10 @@ will not work as expected.
 2. Add deletion, feature #4
   * Features:
     . Add `delete <ID>` command
+3. Add view by commands, feature #6
+  * Refactoring
+    . Make separated `Router` class, apply strategy pattern.
+  * Features:
+    . Add `view by project` command
+    . Add `view by deadline` command
+    . Add `view by date` command
