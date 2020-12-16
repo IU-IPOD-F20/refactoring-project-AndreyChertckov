@@ -1,6 +1,6 @@
 from datetime import datetime
 from dataclasses import dataclass, field
-from typing import Dict, Set, Optional, Iterator
+from typing import Dict, Set, Optional, Iterator, List
 
 @dataclass
 class TaskUid:
@@ -43,12 +43,17 @@ class Task:
 class Project:
     name: str
     tasks: Dict[TaskUid, Task] = field(default_factory=dict)
+    tasks_deadline: Dict[datetime, List[TaskUid]] = field(default_factory=dict)
 
     def __hash__(self):
         return hash(self.name)
 
     def add_task(self, task_uid: TaskUid, task: Task):
         self.tasks[task_uid] = task
+        if task.deadline:
+            if task_uid not in self.tasks_deadline:
+                self.tasks_deadline[task.deadline] = []
+            self.tasks_deadline[task.deadline] += [task_uid]
 
     def __iter__(self):
         return iter(self.tasks.values())
@@ -56,8 +61,13 @@ class Project:
     def get_task_by_id(self, uid: TaskUid) -> Optional[Task]:
         return self.tasks.get(uid, None)
 
+    def pop_task_by_id(self, uid: TaskUid) -> Optional[Task]:
+        return self.tasks.pop(uid, None)
+
     def delete_task_by_id(self, uid: TaskUid):
-        del self.tasks[uid]
+        task = self.tasks.pop(uid)
+        if task.deadline:
+            self.tasks_deadline[task.deadline].remove(uid)
 
 
 @dataclass

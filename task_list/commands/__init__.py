@@ -4,7 +4,7 @@ from .exceptions import ParseError
 
 from .add_project import AddProjectCommand
 from .add_task import AddTaskCommand
-from .show import ShowCommand, TodayCommand
+from .show import ShowByProjectCommand, ShowByDeadlineCommand, ShowByDateCommand
 from .change_task_status import CheckCommand, UnCheckCommand
 from .help import HelpCommand
 from .deadline import DeadlineCommand

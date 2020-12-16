@@ -2,7 +2,7 @@ from typing import Dict, List, Union
 
 from task_list.console import Console
 from task_list.data_modules import ProjectSet
-from task_list.commands import Command, CommandResponse, ParseError, AddProjectCommand, AddTaskCommand, ShowCommand, CheckCommand, UnCheckCommand, HelpCommand, DeadlineCommand, TodayCommand, DeleteCommand
+from task_list.commands import Command, CommandResponse, ParseError, AddProjectCommand, AddTaskCommand, ShowByProjectCommand, CheckCommand, UnCheckCommand, HelpCommand, DeadlineCommand, DeleteCommand, ShowByDeadlineCommand, ShowByDateCommand
 
 
 class RouteNotFound(Exception):
@@ -21,15 +21,17 @@ class TaskList:
                     "task": AddTaskCommand},
                 "view": {
                     "by": {
-                        "project": ShowCommand
+                        "project": ShowByProjectCommand,
+                        "deadline": ShowByDeadlineCommand,
+                        "date": ShowByDateCommand,
                         }
-                    },
+                },
                 "check": CheckCommand,
                 "uncheck": UnCheckCommand,
                 "help": HelpCommand,
                 "deadline": DeadlineCommand,
-                "today": TodayCommand,
-                "delete": DeleteCommand}
+                "delete": DeleteCommand
+        }
 
     def run(self) -> None:
         while True:
