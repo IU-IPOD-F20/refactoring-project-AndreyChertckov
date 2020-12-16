@@ -10,8 +10,10 @@ class ApplicationTest(unittest.TestCase):
     def setUp(self):
         self.proc = subprocess.Popen(
             ["python", "-m", "task_list"],
-            stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-            universal_newlines=True)
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            universal_newlines=True,
+        )
         self.timer = Timer(self.TIMEOUT, self.proc.kill)
         self.timer.start()
 
@@ -23,17 +25,15 @@ class ApplicationTest(unittest.TestCase):
             self.proc.poll()
 
     def test_it_works(self):
-        self.execute("show")
+        self.execute("view by project")
         self.execute("add project secrets")
         self.execute("add task secrets Eat more donuts.")
         self.execute("add task secrets Destroy all humans.")
-        self.execute("show")
+        self.execute("view by project")
 
         self.read_lines(
-            "secrets",
-            "  [ ] 1: Eat more donuts.",
-            "  [ ] 2: Destroy all humans.",
-            "")
+            "secrets", "  [ ] 1: Eat more donuts.", "  [ ] 2: Destroy all humans.", ""
+        )
 
         self.execute("add project training")
         self.execute("add task training Four Elements of Simple Design")
@@ -47,7 +47,7 @@ class ApplicationTest(unittest.TestCase):
         self.execute("check 3")
         self.execute("check 5")
         self.execute("check 6")
-        self.execute("show")
+        self.execute("view by project")
 
         self.read_lines(
             "secrets",
@@ -61,7 +61,8 @@ class ApplicationTest(unittest.TestCase):
             "  [x] 6: Primitive Obsession",
             "  [ ] 7: Outside-In TDD",
             "  [ ] 8: Interaction-Driven Design",
-            "")
+            "",
+        )
 
         self.execute("quit")
 

@@ -18,7 +18,7 @@ class DeadlineParameters(Parameters):
             task_id_str, *datetime_str = inp
             datetime_str = " ".join(datetime_str)
             task_id = TaskUid.from_string(task_id_str)
-            deadline = datetime.strptime(datetime_str, '%d/%m/%Y %H:%M:%S')
+            deadline = datetime.strptime(datetime_str, '%d/%m/%Y')
             return cls(task_id, deadline)
         except ValueError as e:
             raise ParseError(str(e))
@@ -33,11 +33,12 @@ class DeadlineCommand(Command):
 
     def execute(self, projects: ProjectSet) -> CommandResponse:
         for (_, project) in projects:
-            task = project.get_task_by_id(self.parameters.task_id)
+            task = project.pop_task_by_id(self.parameters.task_id)
             if task is None:
                 continue
 
             task.set_deadline(self.parameters.deadline)
+            project.add_task(task.id, task)
             break
         else:
             return CommandResponse(message=f"Task with id {self.parameters.task_id} not found", new_state=projects)

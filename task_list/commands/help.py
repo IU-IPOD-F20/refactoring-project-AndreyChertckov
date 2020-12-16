@@ -22,11 +22,14 @@ class HelpCommand(Command):
 
     def execute(self, projects: ProjectSet) -> CommandResponse:
         response = "Commands:\n"
-        response += "  show\n"
+        response += "  view by date\n"
+        response += "  view by project\n"
+        response += "  view by deadline\n"
         response += "  add project <project name>\n"
         response += "  add task <project name> <task description>\n"
         response += "  check <task ID>\n"
         response += "  uncheck <task ID>\n"
+        response += "  deadline <ID> <date in %d/%m/%Y>"
         return CommandResponse(message=response, new_state=projects)
 
     @classmethod
