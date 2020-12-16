@@ -4,9 +4,9 @@
 // Thanks to Louis Chanoua for code & idea
 // ------------------------------------------
 = DUT-Info/S3/M3105 (CPOA) : Projet refactoring
-Jean-Michel Bruel
+Andrey Chertkov
 v20.1, {localdate}
-:mailto: jbruel@gmail.com
+:mailto: a.chertkov@innopolis.ru
 :status: bottom
 :inclusion:
 :experimental:
@@ -16,84 +16,75 @@ v20.1, {localdate}
 
 // ------------------------------------------
 
-== Refactoring of an existing code
+== How to deploy project
 
-You are asked to refactor the application you will find on this repo:
+The application requires Python 3.8 or above
 
-https://github.com/codurance/task-list 
+First, create a virtual environment
+```
+pip install virtualenv
+virtualenv venv
+```
 
-TIP: This one you can do in `python` or some other language than Java!
+To activate venv on Windows
+```
+venv\Scripts\activate
+```
 
-Here are your initial tasks for this project:
+To activate venv on Linux
+```
+source venv/bin/activate
+```
 
-[%interactive]
-* [ ] Replace this README.adoc so that it contains your report on what you've done to refactor.
-* [ ] Explain how to deploy your app (e.g., `mvn install` or `gradle install`)
+To run tests:
+```
+python -m unittest -v
+```
 
+To run the application:
+```
+python -m task_list
+```
 
-ifdef::uk[]
-== Expected activity
+Notes on testing
+----------------
+For end-to-end testing, a subprocess was used instead of threading. The subprocess module allows
+you to create a new process and connect to their input and output pipes. 
 
-You have up to December 17th, 2020 to improve as much as possible the code of your choosen application :
+The application test runs main from task_list module and then injects the inputs into stdin. 
+The IO Pipe is blocking which more closely emulates the real behavior of stdin when calling readline. 
+The call will block until data is written to stdin. 
+Likewise stdout.read will block until there is data to be read.
 
-- New design patterns
-- Good practices (e.g., SOLID)
+Because of the potential for blocking, a threaded timer was introduced 
+to kill the subprocess on deadlock. The timeout is currently set to 2 seconds
+but if additional tests run longer than that the timeout should be increased.
 
-TIP: Start simple, and remember to document in your README.
+As the subprocess captures all input and output, using print statements for debugging during tests
+will not work as expected. 
 
-TIP: To guide you, try to anticipate code evolution.
-endif::[]
+== Change log
 
-
-ifdef::uk[]
-== Expected Results
-
-=== GitHub repo
-
-Use this repo to host your code.
-You can use branches if you think it is pertinent.
-
-=== UML Models
-
-No models is required nor expected, but if you need some to explain a refactoring, feel free to use them.
-They will be appreciated.
-
-=== Expected Delivrables
-
-The entry point of your report is the `README` of the `master` branch.
-
-Mandatory elements:
-
-[%interactive]
-* [ ] your name
-* [ ] a table of content
-une courte explication par chaque fonctionnalité nouvelle ou refactoring précis
-avec des extraits de code illustratifs et une justification.
-endif::[]
-
-
-ifdef::uk[]
-== Evaluation criteria
-
-You can work in teams of 2 max (but then double work will be expected).
-
-The main criteria for grading will be the following:
-
-- pertinence of the choices
-- pertinence of the tests
-- overall code quality
-- documentation quality (illustration, explainations)
-- number and difficulty of the refactoring elements
-
-endif::[]
-
-ifndef::backend-pdf[]
-****************************************************************
-Baked with {asciidoctorlink} (version `{asciidoctor-version}`) from 'Dan Allen', based on {asciidoc}.
-'Licence Creative Commons'.
-image:88x31.png["Licence Creative
-Commons",style="border-width:0",link="http://creativecommons.org/licenses/by-sa/3.0/"]
-http://creativecommons.org/licenses/by-sa/3.0/[licence Creative Commons Paternité - Partage à l&#39;Identique 3.0 non transposé].
-****************************************************************
-endif::[]
-
+1. Add deadline, feature #2
+  * Refactoring:
+    . Rewrite using link:https://refactoring.guru/design-patterns/command:[Command Pattern]. Before, commands sends as a string, that is link:https://refactoring.guru/smells/primitive-obsession:[Primitive Obsession]
+    . Add unit tests for each command
+    . Rewrite routing using mapping and recursive search for subcommands
+  * Features:
+    . Add `deadline <ID> <date in '%d/%m/%Y %H:%M:%S'>` command
+    . Add `today` command
+2. Add deletion, feature #4
+  * Features:
+    . Add `delete <ID>` command
+3. Add view by commands, feature #5
+  * Refactoring
+    . Make separated `Router` class, apply strategy pattern.
+  * Features:
+    . Add `view by project` command
+    . Add `view by deadline` command
+    . Add `view by date` command
+4. Change signature for task command, feature #3
+  * Refactoring:
+    . Remove uid generator from data_modules.TaskUid.
+  * Feature:
+    . Change signature from `add task <project> <description>` to `add task <project> <task uid> <description>`

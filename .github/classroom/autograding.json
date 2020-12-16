@@ -3,7 +3,7 @@
     {
       "name": "fix0",
       "setup": "",
-      "run": "maven install",
+      "run": "python -m unittest -v",
       "input": "",
       "output": "",
       "comparison": "included",

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.12">
-<meta name="author" content="Jean-Michel Bruel">
+<meta name="author" content="Andrey Chertkov">
 <title>DUT-Info/S3/M3105 (CPOA) : Projet refactoring</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -443,182 +443,152 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="header">
 <h1>DUT-Info/S3/M3105 (CPOA) : Projet refactoring</h1>
 <div class="details">
-<span id="author" class="author">Jean-Michel Bruel</span><br>
+<span id="author" class="author">Andrey Chertkov</span><br>
 <span id="revnumber">version 20.1,</span>
-<span id="revdate">2020-12-07</span>
+<span id="revdate">2020-12-13</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_refactoring_of_an_existing_code">Refactoring of an existing code</a></li>
-<li><a href="#_expected_activity">Expected activity</a></li>
-<li><a href="#_expected_results">Expected Results</a>
-<ul class="sectlevel2">
-<li><a href="#_github_repo">GitHub repo</a></li>
-<li><a href="#_uml_models">UML Models</a></li>
-<li><a href="#_expected_delivrables">Expected Delivrables</a></li>
-</ul>
-</li>
-<li><a href="#_evaluation_criteria">Evaluation criteria</a></li>
+<li><a href="#_how_to_deploy_project">How to deploy project</a></li>
+<li><a href="#_notes_on_testing">Notes on testing</a></li>
+<li><a href="#_change_log">Change log</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_refactoring_of_an_existing_code">Refactoring of an existing code</h2>
+<h2 id="_how_to_deploy_project">How to deploy project</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You are asked to refactor the application you will find on this repo:</p>
+<p>The application requires Python 3.8 or above</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/codurance/task-list" class="bare">https://github.com/codurance/task-list</a></p>
+<p>First, create a virtual environment</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-This one you can do in <code>python</code> or some other language than Java!
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Here are your initial tasks for this project:</p>
-</div>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><input type="checkbox" data-item-complete="0"> Replace this README.adoc so that it contains your report on what you&#8217;ve done to refactor.</p>
-</li>
-<li>
-<p><input type="checkbox" data-item-complete="0"> Explain how to deploy your app (e.g., <code>mvn install</code> or <code>gradle install</code>)</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_expected_activity">Expected activity</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You have up to December 17th, 2020 to improve as much as possible the code of your choosen application :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>New design patterns</p>
-</li>
-<li>
-<p>Good practices (e.g., SOLID)</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-Start simple, and remember to document in your README.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-To guide you, try to anticipate code evolution.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_expected_results">Expected Results</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_github_repo">GitHub repo</h3>
-<div class="paragraph">
-<p>Use this repo to host your code.
-You can use branches if you think it is pertinent.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_uml_models">UML Models</h3>
-<div class="paragraph">
-<p>No models is required nor expected, but if you need some to explain a refactoring, feel free to use them.
-They will be appreciated.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_expected_delivrables">Expected Delivrables</h3>
-<div class="paragraph">
-<p>The entry point of your report is the <code>README</code> of the <code>master</code> branch.</p>
-</div>
-<div class="paragraph">
-<p>Mandatory elements:</p>
-</div>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><input type="checkbox" data-item-complete="0"> your name</p>
-</li>
-<li>
-<p><input type="checkbox" data-item-complete="0"> a table of content
-une courte explication par chaque fonctionnalité nouvelle ou refactoring précis
-avec des extraits de code illustratifs et une justification.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_evaluation_criteria">Evaluation criteria</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can work in teams of 2 max (but then double work will be expected).</p>
-</div>
-<div class="paragraph">
-<p>The main criteria for grading will be the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>pertinence of the choices</p>
-</li>
-<li>
-<p>pertinence of the tests</p>
-</li>
-<li>
-<p>overall code quality</p>
-</li>
-<li>
-<p>documentation quality (illustration, explainations)</p>
-</li>
-<li>
-<p>number and difficulty of the refactoring elements</p>
-</li>
-</ul>
-</div>
-<div class="sidebarblock">
+<div class="listingblock">
 <div class="content">
+<pre class="highlight"><code>pip install virtualenv
+virtualenv venv</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Baked with <a href="http://asciidoctor.org/">Asciidoctor</a> (version <code>2.0.12</code>) from 'Dan Allen', based on {asciidoc}.
-'Licence Creative Commons'.
-<span class="image"><a class="image" href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="88x31.png" alt="Licence Creative Commons"></a></span>
-<a href="http://creativecommons.org/licenses/by-sa/3.0/">licence Creative Commons Paternité - Partage à l&#39;Identique 3.0 non transposé</a>.</p>
+<p>To activate venv on Windows</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>venv\Scripts\activate</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>To activate venv on Linux</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>source venv/bin/activate</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run tests:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>python -m unittest -v</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run the application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>python -m task_list</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_notes_on_testing">Notes on testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For end-to-end testing, a subprocess was used instead of threading. The subprocess module allows
+you to create a new process and connect to their input and output pipes.</p>
+</div>
+<div class="paragraph">
+<p>The application test runs main from task_list module and then injects the inputs into stdin.
+The IO Pipe is blocking which more closely emulates the real behavior of stdin when calling readline.
+The call will block until data is written to stdin.
+Likewise stdout.read will block until there is data to be read.</p>
+</div>
+<div class="paragraph">
+<p>Because of the potential for blocking, a threaded timer was introduced
+to kill the subprocess on deadlock. The timeout is currently set to 2 seconds
+but if additional tests run longer than that the timeout should be increased.</p>
+</div>
+<div class="paragraph">
+<p>As the subprocess captures all input and output, using print statements for debugging during tests
+will not work as expected.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_change_log">Change log</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add deadline, feature #2</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Refactoring:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Rewrite using <a href="https://refactoring.guru/design-patterns/command:">Command Pattern</a>. Before, commands sends as a string, that is <a href="https://refactoring.guru/smells/primitive-obsession:">Primitive Obsession</a></p>
+</li>
+<li>
+<p>Add unit tests for each command</p>
+</li>
+<li>
+<p>Rewrite routing using mapping and recursive search for subcommands</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Features:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add <code>deadline &lt;ID&gt; &lt;date in '%d/%m/%Y %H:%M:%S'&gt;</code> command</p>
+</li>
+<li>
+<p>Add <code>today</code> command</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Add deletion, feature #4</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Features:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add <code>delete &lt;ID&gt;</code> command</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -626,7 +596,7 @@ avec des extraits de code illustratifs et une justification.</p>
 <div id="footer">
 <div id="footer-text">
 Version 20.1<br>
-Last updated 2020-12-07 09:11:40 +0100
+Last updated 2020-12-13 13:45:13 +0300
 </div>
 </div>
 </body>

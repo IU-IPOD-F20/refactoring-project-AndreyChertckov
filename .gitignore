@@ -27,3 +27,11 @@ target
 .factorypath
 .project
 .settings
+
+# Virtualenv
+venv
+__pycache__
+*.pyc
+
+# System files
+.DS_Store
