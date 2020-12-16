@@ -22,6 +22,8 @@ class AddTaskParameters(Parameters):
 
 class AddTaskCommand(Command):
 
+    task_uids = set()
+
     def __init__(self, parameters: AddTaskParameters):
         self.parameters = parameters
 
@@ -29,7 +31,10 @@ class AddTaskCommand(Command):
         project = projects.get_project_by_name(self.parameters.project_name)
         if project is None:
             return CommandResponse(message=f"Project with name {self.parameters.project_name} does not exists.", new_state=projects)
+        if self.parameters.task_uid in self.task_uids:
+            return CommandResponse(message=f"Task with uid {self.parameters.task_uid} already exists.", new_state=projects)
 
+        self.task_uids.add(self.parameters.task_uid)
         project.add_task(self.parameters.task_uid, Task(self.parameters.task_uid, self.parameters.description, done=False))
         return CommandResponse(message="", new_state=projects)
 
